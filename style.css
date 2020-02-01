@@ -1,0 +1,42 @@
+.field {
+    display: flex; /* делаем блоки в ряд */
+    flex-wrap: wrap; /* чтобы блоки которые не влезли в ряд переносились на другую строку */
+    width: 1020px;
+    height: 714px;
+    border: 1px solid black;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 1px dotted gray;
+}
+
+.container {
+    margin: auto;
+    width:1020px;
+}
+
+
+/* Блок элементов */
+.elements {
+    display: flex; /* делаем блоки в ряд */
+    flex-wrap: wrap; /* чтобы блоки которые не влезли в ряд переносились на другую строку */
+    width: 510px;
+    height: 510px;
+    border: 1px solid black;
+}
+
+.elements > div {
+    width: 50px;
+    height: 50px;
+}
+.buttoncheck {
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+/*Alignment elements indise cells*/
+.cell img {
+    margin: 25px;
+}
