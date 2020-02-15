@@ -4,6 +4,11 @@ let currentId = -1;
 // d - direction
 let d = 0; // 0 -вверх 1 - вправо 2 -вниз 3 -влево
 
+// Counters for arrows
+let ulNumber = 1401;
+let dlNumber = 1301;
+let drNumber = 401;
+
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -14,11 +19,21 @@ function drag(ev) {
 }
 
 function drop(ev) {
+
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
+
+    if (!exist("ul")) newGameEl("ul");
+    if (!exist("dl")) newGameEl("dl");
+    if (!exist("dr")) newGameEl("dr");
 }
 
+function exist(elId) {
+    console.log(elId);
+    let img = $("#" +elId).find("img");
+    return img.length === 1;
+}
 
 function processing() {
     // ищем клетку с батарейкой
@@ -126,12 +141,23 @@ function processing() {
             console.log("currentId: " + currentId);
         }
     }
-
-
 }
 
 function checkitem(cell, pic) {
     return $("#" + cell).find("." + pic).length == 1;
 }
 
+function getGameElNumber(type) {
+    if (type === "ul") return ulNumber++;
+    if (type === "dl") return dlNumber++;
+    if (type === "dr") return drNumber++;
+}
 
+function newGameEl(type) {
+    let newArrow = document.createElement("img");
+    newArrow.setAttribute("id", type + getGameElNumber(type));
+    newArrow.setAttribute("src", "img/"+type+".jpg");
+    newArrow.setAttribute("draggable", "true");
+    newArrow.setAttribute("ondragstart", "drag(event)");
+    document.getElementById(type).appendChild(newArrow);
+}
